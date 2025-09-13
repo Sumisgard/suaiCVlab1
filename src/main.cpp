@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
     wObject1.computeCrossCorrelation();
     wObject1.findMaxLocation();
 
-    std::cout << "Template 1 found at: (" << wObject1.get_maxLoc().x << ", " << wObject1.get_maxLoc().y 
+    std::cout << "Image potentially found at: (" << wObject1.get_maxLoc().x << ", " << wObject1.get_maxLoc().y 
         << ") with correlation value: " << wObject1.get_maxVal() << std::endl;
 
     wObject1.saveCorrelation(argv[3]);
