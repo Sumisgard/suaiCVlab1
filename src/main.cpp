@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <chrono>
 #include "task.hpp"
 
 int main(int argc, char** argv) {
@@ -12,11 +13,17 @@ int main(int argc, char** argv) {
     Correlation::Object wObject1(imread(argv[1], IMREAD_GRAYSCALE), imread(argv[2], IMREAD_GRAYSCALE));
 
     wObject1.centerImages();
+    auto start = std::chrono::high_resolution_clock::now();
     wObject1.computeCrossCorrelation();
+    auto end = std::chrono::high_resolution_clock::now();
     wObject1.findMaxLocation();
+
+    auto duration = std::chrono::duration_cast<std::chrono::minutes>(end - start);
 
     std::cout << "Image potentially found at: (" << wObject1.get_maxLoc().x << ", " << wObject1.get_maxLoc().y 
         << ") with correlation value: " << wObject1.get_maxVal() << std::endl;
+
+    std::cout << "Cross Correlation computation time: " << duration.count() << " minutes" << std::endl;
 
     wObject1.saveCorrelation(argv[3]);
 
