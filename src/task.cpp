@@ -96,4 +96,17 @@ double Object::get_maxVal() {
     return this->maxVal;
 }
 
+void Object::matchTemplateWrapper() {
+    matchTemplate(this->scene, this->image, this->correlation, TM_CCORR);
+}
+
+void Object::computingCorrelation(const string& chooseMethod) {
+    if (chooseMethod == "fast") {
+        this->matchTemplateWrapper();
+    }
+    else if (chooseMethod == "slow") {
+        this->computeCrossCorrelation();
+    }
+}
+
 }

@@ -18,13 +18,15 @@ private:
     double calculateMean();
     void centerImage(Mat& image);
     void normalizeCorrelationForDisplay();
+    void matchTemplateWrapper();
+    void computeCrossCorrelation();
 
 public:
     Object(Mat scene, Mat image);
     ~Object();
 
+    void computingCorrelation(const string& chooseMethod);
     void centerImages();
-    void computeCrossCorrelation();
     void findMaxLocation();
     Point get_maxLoc();
     double get_maxVal();
